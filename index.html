@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1">
+<title>心斎橋 禅園 — 紫紺コース Instagram Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #0d0d14;
+    font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Slide Container ===== */
+  .reel {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+  }
+
+  /* ===== Individual Slides ===== */
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .slide.exiting {
+    z-index: 5;
+  }
+
+  /* ===== Background Image ===== */
+  .slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+  }
+
+  .slide.active .slide-bg {
+    animation: kenBurns 3.5s ease-out forwards;
+  }
+
+  @keyframes kenBurns {
+    0%   { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+
+  /* ===== Dark Overlay ===== */
+  .slide-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(13,13,20,0.35) 0%,
+      rgba(13,13,20,0.05) 30%,
+      rgba(13,13,20,0.05) 50%,
+      rgba(13,13,20,0.55) 80%,
+      rgba(13,13,20,0.85) 100%
+    );
+  }
+
+  /* ===== Top Bar (Restaurant Name) ===== */
+  .top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 50px 30px;
+    z-index: 100;
+    background: linear-gradient(180deg, rgba(13,13,20,0.7) 0%, transparent 100%);
+  }
+
+  .restaurant-name {
+    font-size: 32px;
+    font-weight: 400;
+    color: #c9a84c;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  .restaurant-name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.7);
+    letter-spacing: 6px;
+    text-align: center;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ===== Bottom Content Area ===== */
+  .slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 60px 120px;
+    z-index: 20;
+  }
+
+  /* ===== Text Animations ===== */
+  .text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .slide.active .text-reveal {
+    animation: textReveal 0.7s ease-out forwards;
+  }
+
+  .slide.active .text-reveal.delay-1 { animation-delay: 0.2s; }
+  .slide.active .text-reveal.delay-2 { animation-delay: 0.4s; }
+  .slide.active .text-reveal.delay-3 { animation-delay: 0.6s; }
+  .slide.active .text-reveal.delay-4 { animation-delay: 0.8s; }
+  .slide.active .text-reveal.delay-5 { animation-delay: 1.0s; }
+
+  @keyframes textReveal {
+    0%   { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Decorative Line ===== */
+  .deco-line {
+    width: 60px;
+    height: 1px;
+    background: #c9a84c;
+    margin: 20px 0;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .slide.active .deco-line {
+    animation: lineReveal 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes lineReveal {
+    0%   { opacity: 0; transform: scaleX(0); }
+    100% { opacity: 1; transform: scaleX(1); }
+  }
+
+  /* ===== Category Label (前菜, 造里, etc.) ===== */
+  .category-label {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+  }
+
+  .category-label-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.6);
+    letter-spacing: 4px;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ===== Dish Name ===== */
+  .dish-name {
+    font-size: 36px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.6;
+    letter-spacing: 3px;
+    margin-top: 10px;
+  }
+
+  /* ===== HOOK SLIDE (Slide 0) ===== */
+  .hook-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .hook-season {
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 12px;
+    margin-bottom: 30px;
+  }
+
+  .hook-main {
+    font-size: 72px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: 6px;
+  }
+
+  .hook-main .gold {
+    color: #c9a84c;
+  }
+
+  .hook-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.8);
+    letter-spacing: 6px;
+    margin-top: 24px;
+    font-style: italic;
+  }
+
+  /* ===== COURSE SLIDE (Slide 1) ===== */
+  .course-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .course-name-jp {
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 10px;
+    line-height: 1.4;
+  }
+
+  .course-reading {
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+  }
+
+  .course-price {
+    font-size: 56px;
+    font-weight: 500;
+    color: #c9a84c;
+    letter-spacing: 4px;
+    margin-top: 30px;
+  }
+
+  .course-price-note {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.7);
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+
+  .course-items-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 6px;
+    margin-top: 40px;
+    font-style: italic;
+  }
+
+  /* ===== CTA SLIDE (Last) ===== */
+  .cta-slide .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(13,13,20,0.5) 0%,
+      rgba(13,13,20,0.75) 40%,
+      rgba(13,13,20,0.92) 100%
+    );
+  }
+
+  .cta-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 60px 100px;
+    z-index: 20;
+    text-align: center;
+  }
+
+  .cta-heading {
+    font-size: 46px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+  }
+
+  .cta-heading-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.8);
+    letter-spacing: 6px;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    border: 2px solid #c9a84c;
+    color: #c9a84c;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 10px;
+    padding: 22px 60px;
+    margin-bottom: 50px;
+  }
+
+  .slide.active .cta-button {
+    animation: btnPulse 1.5s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  @keyframes btnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+    50%      { box-shadow: 0 0 30px 10px rgba(201, 168, 76, 0.15); }
+  }
+
+  .cta-phone {
+    font-size: 40px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+  }
+
+  .cta-phone-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #c9a84c;
+    border-radius: 50%;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  .cta-phone-icon::after {
+    content: '☎';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: #c9a84c;
+  }
+
+  .cta-divider {
+    width: 100px;
+    height: 1px;
+    background: rgba(201, 168, 76, 0.4);
+    margin: 0 auto 35px;
+  }
+
+  .cta-restaurant {
+    font-size: 30px;
+    font-weight: 500;
+    color: #c9a84c;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+  }
+
+  .cta-address {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    letter-spacing: 2px;
+  }
+
+  .cta-hours {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    margin-top: 20px;
+  }
+
+  /* ===== Counter / Progress ===== */
+  .slide-counter {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+  }
+
+  .counter-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.4s ease;
+  }
+
+  .counter-dot.active {
+    background: #c9a84c;
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  /* ===== Sakura Petals Decoration ===== */
+  .sakura-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .sakura {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+  }
+
+  .sakura::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(255, 200, 210, 0.6) 0%, rgba(255, 180, 190, 0.2) 60%, transparent 70%);
+    border-radius: 50% 0 50% 0;
+    transform: rotate(45deg);
+  }
+
+  .sakura.fall {
+    animation: sakuraFall linear forwards;
+  }
+
+  @keyframes sakuraFall {
+    0%   { opacity: 0; transform: translateY(-40px) rotate(0deg) translateX(0); }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(1960px) rotate(720deg) translateX(150px); }
+  }
+
+  /* ===== Number Badge ===== */
+  .course-number {
+    position: absolute;
+    top: 180px;
+    right: 60px;
+    z-index: 20;
+    text-align: center;
+  }
+
+  .course-number-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.35);
+    line-height: 1;
+  }
+
+  .course-number-total {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.25);
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="reel" id="reel">
+
+  <!-- ========== SLIDE 0: HOOK ========== -->
+  <div class="slide active" data-index="0">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/91a17503-59ca-483d-9504-bdc4bac2975e');"></div>
+    <div class="slide-overlay"></div>
+    <div class="hook-text">
+      <div class="hook-season text-reveal">─ 弥 生 ─</div>
+      <div class="hook-main text-reveal delay-1">
+        春の<span class="gold">贅沢</span><br>全七品
+      </div>
+      <div class="hook-sub text-reveal delay-2">A Luxurious Spring Course</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 1: COURSE INFO ========== -->
+  <div class="slide" data-index="1">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/3334185c-7a89-4a39-b85e-46d3e4567b56');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-info">
+      <div class="course-reading text-reveal">── し こ ん ──</div>
+      <div class="course-name-jp text-reveal delay-1">紫紺コース</div>
+      <div class="deco-line" style="margin: 25px auto;"></div>
+      <div class="course-price text-reveal delay-2">¥7,800</div>
+      <div class="course-price-note text-reveal delay-3">税・サービス料込</div>
+      <div class="course-items-label text-reveal delay-4">Seven Courses</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 2: 前菜 ========== -->
+  <div class="slide" data-index="2">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/db349c65-7277-4948-9782-e8fbc4575b36');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">01</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">前 菜</div>
+      <div class="category-label-en text-reveal delay-1">Appetizer</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        菜の花白和え<br>
+        ホタルイカ酢味噌<br>
+        穴子小袖寿司
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 3: 造里 ========== -->
+  <div class="slide" data-index="3">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/db6d710d-656f-4b8c-9be2-6d6a4dcebbba');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">02</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">造 里</div>
+      <div class="category-label-en text-reveal delay-1">Sashimi</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        鮮魚三種<br>
+        かんぱち　鮪　鯛
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 4: 焼物 ========== -->
+  <div class="slide" data-index="4">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/19e439af-c253-4412-93fa-37a9f2f40658');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">03</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">焼 物</div>
+      <div class="category-label-en text-reveal delay-1">Grilled</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        小柱と菜の花のグラタン<br>
+        パルメザンチーズ
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 5: 揚物・温物 ========== -->
+  <div class="slide" data-index="5">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/5473b196-d636-404b-bf85-48c18fdf2af9');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">04</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">揚物 ・ 温物</div>
+      <div class="category-label-en text-reveal delay-1">Deep Fried &amp; Simmered</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        桜鯛味噌漬け春巻き<br>
+        筍コロッケ<br>
+        銀鮭の酒粕煮
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 6: 温物・仕上 ========== -->
+  <div class="slide" data-index="6">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/fd0661ef-1bfc-42d8-894c-2f8e560210ff');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">06</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">仕 上</div>
+      <div class="category-label-en text-reveal delay-1">Signature Rice</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        名物<br>
+        明石の天然真鯛を使った<br>
+        鯛飯
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 7: 甘味 ========== -->
+  <div class="slide" data-index="7">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/5a453e6b-d7f4-40d5-9015-c25c953245b0');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">07</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">甘 味</div>
+      <div class="category-label-en text-reveal delay-1">Dessert</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        桜のパンナコッタ
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 8: CTA ========== -->
+  <div class="slide cta-slide" data-index="8">
+    <div class="slide-bg" style="background-image: url('https://github.com/user-attachments/assets/91a17503-59ca-483d-9504-bdc4bac2975e'); filter: blur(6px) brightness(0.4);"></div>
+    <div class="slide-overlay"></div>
+    <div class="cta-content">
+      <div class="cta-heading text-reveal">ご予約受付中</div>
+      <div class="cta-heading-en text-reveal delay-1">Reservations Now Open</div>
+      <div class="cta-button text-reveal delay-2">ご 予 約</div>
+      <div style="height: 30px;"></div>
+      <div class="cta-phone text-reveal delay-3">
+        <span class="cta-phone-icon"></span>06-6241-7027
+      </div>
+      <div class="cta-divider text-reveal delay-3"></div>
+      <div class="cta-restaurant text-reveal delay-4">心斎橋 禅園</div>
+      <div class="cta-address text-reveal delay-4">
+        大阪市中央区西心斎橋1-3-3<br>
+        ホテル日航ビルB2F
+      </div>
+      <div class="cta-hours text-reveal delay-5">
+        Lunch 11:30〜14:45 ／ Dinner 17:00〜22:00
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Top Bar (persistent) ========== -->
+  <div class="top-bar" id="topBar">
+    <div class="restaurant-name">心 斎 橋 　禅 園</div>
+    <div class="restaurant-name-en">SHINSAIBASHI ZEN-EN</div>
+  </div>
+
+  <!-- ========== Sakura Petals ========== -->
+  <div class="sakura-container" id="sakuraContainer"></div>
+
+  <!-- ========== Progress Dots ========== -->
+  <div class="slide-counter" id="slideCounter"></div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== Configuration =====
+  const SLIDE_DURATIONS = [
+    3000,  // Slide 0: Hook (3s - attention grab)
+    3000,  // Slide 1: Course info (3s - name & price)
+    2500,  // Slide 2: Appetizer
+    2500,  // Slide 3: Sashimi
+    2500,  // Slide 4: Grilled
+    2800,  // Slide 5: Deep fried + Simmered (slightly longer - 2 courses)
+    2500,  // Slide 6: Signature rice
+    2500,  // Slide 7: Dessert
+    4200   // Slide 8: CTA (4.2s - reading time for booking info)
+  ];
+
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+  let timer = null;
+
+  // ===== Build Progress Dots =====
+  const counter = document.getElementById('slideCounter');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'counter-dot' + (i === 0 ? ' active' : '');
+    dot.dataset.index = i;
+    counter.appendChild(dot);
+  }
+
+  function updateDots(index) {
+    document.querySelectorAll('.counter-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  // ===== Top Bar Visibility =====
+  const topBar = document.getElementById('topBar');
+
+  function updateTopBar(index) {
+    // Hide top bar on hook slide (0) and CTA slide (last)
+    if (index === 0 || index === totalSlides - 1) {
+      topBar.style.opacity = '0';
+      topBar.style.transition = 'opacity 0.5s ease';
+    } else {
+      topBar.style.opacity = '1';
+      topBar.style.transition = 'opacity 0.5s ease';
+    }
+  }
+
+  // ===== Slide Transition =====
+  function goToSlide(index) {
+    const prevIndex = currentIndex;
+
+    // Remove active from current
+    slides[prevIndex].classList.remove('active');
+    slides[prevIndex].classList.add('exiting');
+
+    // Reset text animations on exiting slide
+    setTimeout(() => {
+      slides[prevIndex].classList.remove('exiting');
+    }, 800);
+
+    currentIndex = index;
+
+    // Activate new slide
+    slides[currentIndex].classList.add('active');
+
+    // Update UI
+    updateDots(currentIndex);
+    updateTopBar(currentIndex);
+
+    // Schedule next slide
+    scheduleNext();
+  }
+
+  function nextSlide() {
+    const next = (currentIndex + 1) % totalSlides;
+    goToSlide(next);
+  }
+
+  function scheduleNext() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(nextSlide, SLIDE_DURATIONS[currentIndex]);
+  }
+
+  // ===== Sakura Petals =====
+  const sakuraContainer = document.getElementById('sakuraContainer');
+
+  function createSakuraPetal() {
+    const petal = document.createElement('div');
+    petal.className = 'sakura';
+
+    const x = Math.random() * 1080;
+    const size = 12 + Math.random() * 16;
+    const duration = 6 + Math.random() * 8;
+    const delay = Math.random() * 2;
+
+    petal.style.left = x + 'px';
+    petal.style.top = '-30px';
+    petal.style.width = size + 'px';
+    petal.style.height = size + 'px';
+
+    sakuraContainer.appendChild(petal);
+
+    setTimeout(() => {
+      petal.classList.add('fall');
+      petal.style.animationDuration = duration + 's';
+    }, delay * 1000);
+
+    setTimeout(() => {
+      petal.remove();
+    }, (duration + delay) * 1000 + 500);
+  }
+
+  // Generate sakura petals periodically
+  function sakuraLoop() {
+    // Create 2-3 petals every 1.5 seconds
+    const count = 2 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < count; i++) {
+      createSakuraPetal();
+    }
+    setTimeout(sakuraLoop, 1500);
+  }
+
+  // ===== Initialize =====
+  updateTopBar(0);
+  scheduleNext();
+  sakuraLoop();
+
+  // Preload images
+  const imageUrls = [];
+  slides.forEach(slide => {
+    const bg = slide.querySelector('.slide-bg');
+    if (bg) {
+      const style = bg.getAttribute('style');
+      const match = style.match(/url\(['"]?([^'"]+)['"]?\)/);
+      if (match) imageUrls.push(match[1]);
+    }
+  });
+
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+
+})();
+</script>
+
+</body>
+</html>
