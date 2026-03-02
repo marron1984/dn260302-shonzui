@@ -611,7 +611,7 @@
 <div class="reel" id="reel">
 
   <!-- ========== SLIDE 0: HOOK ========== -->
-  <div class="slide active" data-index="0">
+  <div class="slide" data-index="0">
     <div class="slide-bg" style="background-image: url('images/course-overview-reel.jpg');"></div>
     <div class="slide-overlay"></div>
     <div class="hook-text">
@@ -946,16 +946,53 @@
     setTimeout(sakuraLoop, 1500);
   }
 
+  // ===== Preload Images =====
+  function preloadImages() {
+    const imgs = document.querySelectorAll('.slide-bg');
+    const promises = [];
+    imgs.forEach(bg => {
+      const style = bg.getAttribute('style') || '';
+      const match = style.match(/url\(['"]?([^'")\s]+)['"]?\)/);
+      if (match) {
+        promises.push(new Promise(resolve => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = match[1];
+        }));
+      }
+    });
+    return Promise.all(promises);
+  }
+
   // ===== Initialize =====
-  // Signal that animation is complete after one full cycle
-  const totalDuration = SLIDE_DURATIONS.reduce((a, b) => a + b, 0);
-  setTimeout(() => {
-    window.__REEL_DONE__ = true;
-  }, totalDuration + 1000);
+  // Do NOT auto-start. Wait for startReel() call from recorder.
+  window.startReel = function() {
+    slides[0].classList.add('active');
+    updateTopBar(0);
+    updateDots(0);
+    scheduleNext();
+    sakuraLoop();
+
+    const totalDuration = SLIDE_DURATIONS.reduce((a, b) => a + b, 0);
+    setTimeout(() => {
+      window.__REEL_DONE__ = true;
+    }, totalDuration + 1000);
+  };
+
+  // Auto-start when opened directly in browser (not recorder)
+  window.__REEL_READY__ = false;
+  preloadImages().then(() => {
+    window.__REEL_READY__ = true;
+    // Auto-start after 100ms if not triggered by recorder
+    setTimeout(() => {
+      if (!slides[0].classList.contains('active')) {
+        window.startReel();
+      }
+    }, 100);
+  });
 
   updateTopBar(0);
-  scheduleNext();
-  sakuraLoop();
 
 })();
 </script>
