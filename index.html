@@ -120,6 +120,37 @@
   [data-index="9"] .slide-bg {
     background: radial-gradient(ellipse at 50% 50%, #1a1525 0%, #100e1a 40%, #0d0d14 100%);
   }
+  [data-index="10"] .slide-bg {
+    background: radial-gradient(ellipse at 50% 50%, #1a1525 0%, #100e1a 40%, #0d0d14 100%);
+  }
+
+  /* ===== RESERVATION PROMPT SLIDE (Slide 9) ===== */
+  .reservation-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .reservation-prompt-text {
+    font-size: 48px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 6px;
+    line-height: 1.8;
+  }
+
+  .reservation-prompt-sub {
+    font-size: 42px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 5px;
+    line-height: 1.8;
+    margin-top: 20px;
+  }
 
   .slide.active .slide-bg {
     animation: kenBurns 3.5s ease-out forwards;
@@ -739,8 +770,18 @@
     </div>
   </div>
 
-  <!-- ========== SLIDE 9: CTA ========== -->
-  <div class="slide cta-slide" data-index="9">
+  <!-- ========== SLIDE 9: RESERVATION PROMPT ========== -->
+  <div class="slide" data-index="9">
+    <div class="slide-bg" style="background-image: url('images/course-overview-reel.jpg'); filter: blur(8px) brightness(0.35);"></div>
+    <div class="slide-overlay"></div>
+    <div class="reservation-prompt">
+      <div class="reservation-prompt-text text-reveal">ご予約はプロフィールから</div>
+      <div class="reservation-prompt-sub text-reveal delay-2">または、お電話で</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 10: CTA ========== -->
+  <div class="slide cta-slide" data-index="10">
     <div class="slide-bg" style="background-image: url('images/course-overview-reel.jpg'); filter: blur(6px) brightness(0.4);"></div>
     <div class="slide-overlay"></div>
     <div class="cta-content">
@@ -792,7 +833,8 @@
     2500,  // Slide 6: Simmered
     2500,  // Slide 7: Signature rice
     2500,  // Slide 8: Dessert
-    4200   // Slide 9: CTA (4.2s - reading time for booking info)
+    3000,  // Slide 9: Reservation prompt (3s)
+    4200   // Slide 10: CTA (4.2s - reading time for booking info)
   ];
 
   const slides = document.querySelectorAll('.slide');

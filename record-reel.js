@@ -8,8 +8,8 @@ const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const WEBM_PATH = path.join(OUTPUT_DIR, 'reel-raw.webm');
 const MP4_PATH = path.join(OUTPUT_DIR, 'shikon-course-reel.mp4');
 
-// 10 slides: hook(3) + course(3) + 7 courses(2.5 each) + CTA(4.2) = 28.2s
-const TOTAL_DURATION = 28200;
+// 11 slides: hook(3) + course(3) + 7 courses(2.5 each) + reservation(3) + CTA(4.2) = 31.2s
+const TOTAL_DURATION = 31200;
 const BUFFER = 2000;
 
 (async () => {
