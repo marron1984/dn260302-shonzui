@@ -6,8 +6,37 @@
 <title>心斎橋 禅園 — 紫紺コース Instagram Reel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+  /* ===== Shippori Mincho (Local) ===== */
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
   /* ===== Reset & Base ===== */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,7 +45,7 @@
     height: 1920px;
     overflow: hidden;
     background: #0d0d14;
-    font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+    font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -114,6 +143,17 @@
       rgba(13,13,20,0.05) 50%,
       rgba(13,13,20,0.55) 80%,
       rgba(13,13,20,0.85) 100%
+    );
+  }
+
+  /* ===== Slide 1: Stronger overlay for course info readability ===== */
+  [data-index="1"] .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(13,13,20,0.6) 0%,
+      rgba(13,13,20,0.55) 30%,
+      rgba(13,13,20,0.55) 70%,
+      rgba(13,13,20,0.8) 100%
     );
   }
 
@@ -277,6 +317,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 20;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
     width: 80%;
   }
 
@@ -364,7 +405,7 @@
     display: inline-block;
     border: 2px solid #c9a84c;
     color: #c9a84c;
-    font-family: 'Noto Serif JP', serif;
+    font-family: 'Shippori Mincho', serif;
     font-size: 34px;
     font-weight: 500;
     letter-spacing: 10px;

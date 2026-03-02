@@ -26,7 +26,7 @@ const BUFFER = 2000;
 
   const context = await browser.newContext({
     viewport: { width: 1080, height: 1920 },
-    deviceScaleFactor: 1,
+    deviceScaleFactor: 2,
     recordVideo: {
       dir: OUTPUT_DIR,
       size: { width: 1080, height: 1920 },
@@ -70,8 +70,8 @@ const BUFFER = 2000;
   console.log('Converting to MP4...');
   try {
     execSync(
-      `ffmpeg -y -i "${WEBM_PATH}" -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -movflags +faststart -vf "scale=1080:1920" "${MP4_PATH}"`,
-      { stdio: 'inherit', timeout: 120000 }
+      `ffmpeg -y -i "${WEBM_PATH}" -c:v libx264 -preset slow -crf 15 -pix_fmt yuv420p -movflags +faststart -vf "scale=1080:1920" "${MP4_PATH}"`,
+      { stdio: 'inherit', timeout: 300000 }
     );
     console.log(`\nMP4 saved to: ${MP4_PATH}`);
     const stats = fs.statSync(MP4_PATH);
