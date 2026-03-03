@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心斎橋 禅園 — Instagram Reel プレビュー</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: #111;
+    color: #eee;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    border-bottom: 1px solid #333;
+  }
+
+  header h1 {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: #c9a84c;
+  }
+
+  header p {
+    font-size: 14px;
+    color: #888;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 340px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .card-header h2 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+  }
+
+  .card-header .price {
+    font-size: 18px;
+    margin-top: 4px;
+  }
+
+  .card-header.shikon h2 { color: #c9a84c; }
+  .card-header.shikon .price { color: rgba(201,168,76,0.7); }
+
+  .card-header.hanarokusho h2 { color: #7ec8b5; }
+  .card-header.hanarokusho .price { color: rgba(126,200,181,0.7); }
+
+  .card-video {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    background: #000;
+  }
+
+  .card-video video {
+    width: 270px;
+    height: 480px;
+    border-radius: 8px;
+    background: #000;
+    object-fit: cover;
+  }
+
+  .card-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #2a2a2a;
+    display: flex;
+    gap: 10px;
+  }
+
+  .card-footer a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+  }
+
+  .card-footer a:hover { opacity: 0.8; }
+
+  .btn-download {
+    background: #333;
+    color: #eee;
+  }
+
+  .card-menu {
+    padding: 16px 24px;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.8;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .card-menu strong {
+    color: #ccc;
+    font-weight: 500;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: #555;
+    font-size: 12px;
+    border-top: 1px solid #222;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>心斎橋 禅園</h1>
+  <p>Instagram Reel 動画プレビュー</p>
+</header>
+
+<div class="container">
+
+  <!-- 紫紺コース -->
+  <div class="card">
+    <div class="card-header shikon">
+      <h2>紫紺コース</h2>
+      <div class="price">¥7,800（税サ込）</div>
+    </div>
+    <div class="card-video">
+      <video controls playsinline preload="metadata"
+        src="output/shikon-course-reel.mp4"
+        poster="">
+      </video>
+    </div>
+    <div class="card-menu">
+      <strong>前菜</strong> 菜の花白和え／ホタルイカ酢味噌／穴子小袖寿司／菱餅／芽キャベツ田楽<br>
+      <strong>造里</strong> 鮮魚三種<br>
+      <strong>焼物</strong> 小柱と菜の花のグラタン<br>
+      <strong>揚物</strong> 桜鯛味噌漬け春巻き／筍コロッケ<br>
+      <strong>温物</strong> 銀鮭の酒粕煮<br>
+      <strong>仕上</strong> 名物 鯛飯<br>
+      <strong>甘味</strong> 桜のパンナコッタ
+    </div>
+    <div class="card-footer">
+      <a class="btn-download" href="output/shikon-course-reel.mp4" download>ダウンロード</a>
+    </div>
+  </div>
+
+  <!-- 花緑青コース -->
+  <div class="card">
+    <div class="card-header hanarokusho">
+      <h2>花緑青コース</h2>
+      <div class="price">¥9,800（税サ込）</div>
+    </div>
+    <div class="card-video">
+      <video controls playsinline preload="metadata"
+        src="output/hanarokusho-course-reel.mp4"
+        poster="">
+      </video>
+    </div>
+    <div class="card-menu">
+      <strong>前菜</strong> 菜の花白和え／ホタルイカ酢味噌／穴子小袖寿司／菱餅／芽キャベツ田楽<br>
+      <strong>造里</strong> 鰹たたき／桜鯛薄造里<br>
+      <strong>焼物</strong> 春鰆菜種焼／叩き牛蒡<br>
+      <strong>揚物</strong> 桜鯛味噌漬け春巻き／筍コロッケ<br>
+      <strong>温物</strong> 若竹煮／鯛の子／筍／桜麩<br>
+      <strong>仕上</strong> 名物 鯛飯<br>
+      <strong>甘味</strong> 桜のパンナコッタ
+    </div>
+    <div class="card-footer">
+      <a class="btn-download" href="output/hanarokusho-course-reel.mp4" download>ダウンロード</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心斎橋 禅園 — SHINSAIBASHI ZEN-EN
+</footer>
+
+</body>
+</html>
