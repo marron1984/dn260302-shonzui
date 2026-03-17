@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1">
+<title>西梅田 禅園 — 花緑青コース Instagram Reel</title>
+<style>
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: block;
+  }
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: block;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #0a1612;
+    font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .reel {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+  }
+
+  /* ===== Slides ===== */
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0; z-index: 0;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 10;
+    animation: slideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .slide.exiting {
+    z-index: 5;
+    animation: slideOut 0.6s ease-in forwards;
+  }
+
+  @keyframes slideIn {
+    0%   { opacity: 0; transform: scale(1.03); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slideOut {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* ===== Background ===== */
+  .slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+  }
+
+  .slide[data-index="0"].active .slide-bg { animation: kb-zoom-in 3.5s ease-out forwards; }
+  .slide[data-index="1"].active .slide-bg { animation: kb-zoom-out 3.2s ease-out forwards; }
+  .slide[data-index="2"].active .slide-bg { animation: kb-pan-right 3.0s ease-out forwards; }
+  .slide[data-index="3"].active .slide-bg { animation: kb-zoom-in 2.8s ease-out forwards; }
+  .slide[data-index="4"].active .slide-bg { animation: kb-pan-left 3.3s ease-out forwards; }
+  .slide[data-index="5"].active .slide-bg { animation: kb-zoom-out 2.9s ease-out forwards; }
+  .slide[data-index="6"].active .slide-bg { animation: kb-pan-right 3.1s ease-out forwards; }
+  .slide[data-index="7"].active .slide-bg { animation: kb-zoom-in 2.7s ease-out forwards; }
+  .slide[data-index="8"].active .slide-bg { animation: kb-pan-left 3.4s ease-out forwards; }
+  .slide[data-index="9"].active .slide-bg { animation: kb-zoom-out 3.0s ease-out forwards; }
+  .slide[data-index="10"].active .slide-bg { animation: kb-zoom-in 3.2s ease-out forwards; }
+
+  @keyframes kb-zoom-in   { 0% { transform: scale(1.08); } 100% { transform: scale(1); } }
+  @keyframes kb-zoom-out  { 0% { transform: scale(1); }    100% { transform: scale(1.06); } }
+  @keyframes kb-pan-right { 0% { transform: scale(1.08) translateX(-12px); } 100% { transform: scale(1.03) translateX(12px); } }
+  @keyframes kb-pan-left  { 0% { transform: scale(1.08) translateX(12px); }  100% { transform: scale(1.03) translateX(-12px); } }
+
+  /* ===== Overlay ===== */
+  .slide-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(10,22,18,0.40) 0%,
+      rgba(10,22,18,0.08) 30%,
+      rgba(10,22,18,0.08) 50%,
+      rgba(10,22,18,0.50) 75%,
+      rgba(10,22,18,0.88) 100%
+    );
+  }
+
+  [data-index="1"] .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10,22,18,0.65) 0%,
+      rgba(10,22,18,0.55) 30%,
+      rgba(10,22,18,0.55) 70%,
+      rgba(10,22,18,0.80) 100%
+    );
+  }
+
+  /* ===== Grain overlay ===== */
+  .grain-overlay {
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grainShift 0.8s steps(4) infinite;
+  }
+
+  @keyframes grainShift {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-5%, -3%); }
+    50%  { transform: translate(3%, 5%); }
+    75%  { transform: translate(-3%, 2%); }
+    100% { transform: translate(5%, -5%); }
+  }
+
+  /* ===== Vignette ===== */
+  .vignette {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 55;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.25) 100%);
+  }
+
+  /* ===== Top Bar ===== */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 60px 50px 30px;
+    z-index: 100;
+    background: linear-gradient(180deg, rgba(10,22,18,0.7) 0%, transparent 100%);
+  }
+
+  .restaurant-name {
+    font-size: 32px;
+    font-weight: 400;
+    color: #7ec8b5;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  .restaurant-name-en {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.6);
+    letter-spacing: 6px;
+    text-align: center;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ===== Bottom Content ===== */
+  .slide-content {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    padding: 0 60px 120px;
+    z-index: 20;
+  }
+
+  /* ===== Text Reveal ===== */
+  .text-reveal {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  .slide.active .text-reveal {
+    animation: textUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .slide.active .text-reveal.delay-1 { animation-delay: 0.15s; }
+  .slide.active .text-reveal.delay-2 { animation-delay: 0.30s; }
+  .slide.active .text-reveal.delay-3 { animation-delay: 0.45s; }
+  .slide.active .text-reveal.delay-4 { animation-delay: 0.60s; }
+  .slide.active .text-reveal.delay-5 { animation-delay: 0.75s; }
+
+  @keyframes textUp {
+    0%   { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Deco Line ===== */
+  .deco-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #4a9e8e, #7ec8b5);
+    margin: 18px 0;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .slide.active .deco-line {
+    animation: lineGrow 0.5s ease-out forwards;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes lineGrow {
+    0%   { opacity: 0; transform: scaleX(0); }
+    100% { opacity: 1; transform: scaleX(1); }
+  }
+
+  /* ===== Category Label ===== */
+  .category-label {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 10px;
+  }
+
+  .category-label-en {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.6);
+    letter-spacing: 4px;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ===== Dish Name ===== */
+  .dish-name {
+    font-size: 34px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.7;
+    letter-spacing: 3px;
+    margin-top: 10px;
+  }
+
+  /* ===== Course Number ===== */
+  .course-number {
+    position: absolute;
+    top: 180px;
+    right: 60px;
+    z-index: 20;
+    text-align: center;
+  }
+
+  .course-number-value {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.30);
+    line-height: 1;
+  }
+
+  .course-number-total {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.20);
+    letter-spacing: 2px;
+  }
+
+  /* ===== HOOK SLIDE (0) ===== */
+  .hook-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .hook-season {
+    font-size: 26px;
+    font-weight: 300;
+    color: #7ec8b5;
+    letter-spacing: 14px;
+    margin-bottom: 35px;
+  }
+
+  .hook-main {
+    font-size: 68px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.5;
+    letter-spacing: 6px;
+  }
+
+  .hook-main .accent {
+    color: #7ec8b5;
+  }
+
+  .hook-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.75);
+    letter-spacing: 6px;
+    margin-top: 28px;
+    font-style: italic;
+  }
+
+  .hook-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4a9e8e, transparent);
+    margin: 30px auto;
+  }
+
+  /* ===== COURSE SLIDE (1) ===== */
+  .course-info {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .course-reading {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+  }
+
+  .course-name-jp {
+    font-size: 64px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 12px;
+    line-height: 1.4;
+  }
+
+  .course-price {
+    font-size: 54px;
+    font-weight: 500;
+    color: #7ec8b5;
+    letter-spacing: 4px;
+    margin-top: 30px;
+  }
+
+  .course-price-note {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.65);
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+
+  .course-items-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 6px;
+    margin-top: 40px;
+    font-style: italic;
+  }
+
+  /* ===== RESERVATION SLIDE ===== */
+  .reservation-prompt {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+  }
+
+  .reservation-prompt-text {
+    font-size: 48px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 6px;
+    line-height: 1.8;
+  }
+
+  .reservation-prompt-sub {
+    font-size: 42px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.80);
+    letter-spacing: 5px;
+    line-height: 1.8;
+    margin-top: 20px;
+  }
+
+  /* ===== CTA SLIDE ===== */
+  .cta-slide .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10,22,18,0.55) 0%,
+      rgba(10,22,18,0.78) 40%,
+      rgba(10,22,18,0.94) 100%
+    );
+  }
+
+  .cta-content {
+    position: absolute;
+    top: 45%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 60px;
+    z-index: 20;
+    text-align: center;
+  }
+
+  .cta-heading {
+    font-size: 46px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+  }
+
+  .cta-heading-en {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(126, 200, 181, 0.75);
+    letter-spacing: 6px;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    border: 2px solid #7ec8b5;
+    color: #7ec8b5;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 10px;
+    padding: 22px 60px;
+    margin-bottom: 50px;
+  }
+
+  .slide.active .cta-button {
+    animation: btnGlow 1.5s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  @keyframes btnGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(126, 200, 181, 0.3); }
+    50%      { box-shadow: 0 0 30px 8px rgba(126, 200, 181, 0.12); }
+  }
+
+  .cta-phone {
+    font-size: 40px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+  }
+
+  .cta-phone-icon {
+    display: inline-block;
+    width: 36px; height: 36px;
+    border: 2px solid #7ec8b5;
+    border-radius: 50%;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  .cta-phone-icon::after {
+    content: '\260E';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: #7ec8b5;
+  }
+
+  .cta-divider {
+    width: 100px;
+    height: 1px;
+    background: rgba(126, 200, 181, 0.35);
+    margin: 0 auto 35px;
+  }
+
+  .cta-restaurant {
+    font-size: 30px;
+    font-weight: 500;
+    color: #7ec8b5;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+  }
+
+  .cta-address {
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    letter-spacing: 3px;
+  }
+
+  .cta-hours {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    margin-top: 20px;
+  }
+
+  /* ===== Progress Dots ===== */
+  .slide-counter {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+  }
+
+  .counter-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.20);
+    transition: all 0.4s ease;
+  }
+
+  .counter-dot.active {
+    background: #7ec8b5;
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  /* ===== Bamboo Leaf Particles ===== */
+  .leaf-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .leaf {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 8px;
+    background: linear-gradient(135deg, rgba(74,158,142,0.5) 0%, rgba(126,200,181,0.3) 100%);
+    border-radius: 50% 0 50% 0;
+  }
+
+  .leaf.fall {
+    animation: leafDrift linear forwards;
+  }
+
+  @keyframes leafDrift {
+    0%   { opacity: 0; transform: translateY(-30px) rotate(0deg) translateX(0); }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.35; }
+    100% { opacity: 0; transform: translateY(1960px) rotate(540deg) translateX(120px); }
+  }
+
+  /* ===== Color shift ===== */
+  .color-shift {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 58;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.03;
+    animation: colorPulse 12s ease-in-out infinite;
+    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 50%, #95d5b2 100%);
+  }
+
+  @keyframes colorPulse {
+    0%, 100% { opacity: 0.02; }
+    33%      { opacity: 0.04; }
+    66%      { opacity: 0.02; }
+  }
+</style>
+</head>
+<body>
+
+<div class="reel" id="reel">
+
+  <!-- SLIDE 0: HOOK -->
+  <div class="slide" data-index="0">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/00-course-overview.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="hook-text">
+      <div class="hook-season text-reveal">─ 弥 生 の 献 立 ─</div>
+      <div class="hook-main text-reveal delay-1">
+        旬を<span class="accent">味わう</span><br>全七品
+      </div>
+      <div class="hook-line text-reveal delay-2"></div>
+      <div class="hook-sub text-reveal delay-3">A Seasonal Seven-Course Journey</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1: COURSE INFO -->
+  <div class="slide" data-index="1">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/00-course-overview.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-info">
+      <div class="course-reading text-reveal">── は な ろ く し ょ う ──</div>
+      <div class="course-name-jp text-reveal delay-1">花緑青コース</div>
+      <div class="deco-line" style="margin: 25px auto;"></div>
+      <div class="course-price text-reveal delay-2">¥9,800</div>
+      <div class="course-price-note text-reveal delay-3">税・サービス料込</div>
+      <div class="course-items-label text-reveal delay-4">Seven Courses</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: 先付 01/07 -->
+  <div class="slide" data-index="2">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/01-sakitsuke.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">01</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">先 付</div>
+      <div class="category-label-en text-reveal delay-1">Appetizer</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        季節の盛り合わせ
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: 椀物 02/07 -->
+  <div class="slide" data-index="3">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/02-wanmono.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">02</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">椀 物</div>
+      <div class="category-label-en text-reveal delay-1">Soup</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        蛤と筍の潮仕立
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: 造里 03/07 -->
+  <div class="slide" data-index="4">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/03-tsukuri.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">03</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">造 里</div>
+      <div class="category-label-en text-reveal delay-1">Sashimi</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        本日のお造り
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: 焼物 04/07 -->
+  <div class="slide" data-index="5">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/04-yakimono.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">04</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">焼 物</div>
+      <div class="category-label-en text-reveal delay-1">Grilled</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        グラタン仕立
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: 揚物 05/07 -->
+  <div class="slide" data-index="6">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/05-agemono.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">05</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">揚 物</div>
+      <div class="category-label-en text-reveal delay-1">Deep Fried</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        季節の天ぷら
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: 温物 06/07 -->
+  <div class="slide" data-index="7">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/06-atsumono.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">06</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">温 物</div>
+      <div class="category-label-en text-reveal delay-1">Simmered</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        鯛の白味噌仕立
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: 甘味 07/07 -->
+  <div class="slide" data-index="8">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/07-kanmi.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="course-number">
+      <div class="course-number-value text-reveal">07</div>
+      <div class="course-number-total text-reveal delay-1">/ 07</div>
+    </div>
+    <div class="slide-content">
+      <div class="category-label text-reveal">甘 味</div>
+      <div class="category-label-en text-reveal delay-1">Dessert</div>
+      <div class="deco-line"></div>
+      <div class="dish-name text-reveal delay-2">
+        桜のゼリー
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: RESERVATION PROMPT -->
+  <div class="slide" data-index="9">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/00-course-overview.jpg'); filter: blur(8px) brightness(0.3);"></div>
+    <div class="slide-overlay"></div>
+    <div class="reservation-prompt">
+      <div class="reservation-prompt-text text-reveal">ご予約はプロフィールから</div>
+      <div class="reservation-prompt-sub text-reveal delay-2">または、お電話で</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CTA -->
+  <div class="slide cta-slide" data-index="10">
+    <div class="slide-bg" style="background-image: url('images-nishiumeda/08-cta.jpg'); filter: blur(6px) brightness(0.35);"></div>
+    <div class="slide-overlay"></div>
+    <div class="cta-content">
+      <div class="cta-heading text-reveal">ご予約受付中</div>
+      <div class="cta-heading-en text-reveal delay-1">Reservations Now Open</div>
+      <div class="cta-button text-reveal delay-2">ご 予 約</div>
+      <div style="height: 30px;"></div>
+      <div class="cta-phone text-reveal delay-3">
+        <span class="cta-phone-icon"></span>06-6457-1002
+      </div>
+      <div class="cta-divider text-reveal delay-3"></div>
+      <div class="cta-restaurant text-reveal delay-4">西梅田 禅園</div>
+      <div class="cta-address text-reveal delay-4">
+        大阪市北区梅田2-5-25<br>
+        ハービスPLAZA B2F
+      </div>
+      <div class="cta-hours text-reveal delay-5">
+        Lunch 11:00〜14:45（L.O. 14:00）／ Dinner 17:30〜22:00（L.O. 21:00）
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Bar (persistent) -->
+  <div class="top-bar" id="topBar">
+    <div class="restaurant-name">西 梅 田 　禅 園</div>
+    <div class="restaurant-name-en">NISHIUMEDA ZEN-EN</div>
+  </div>
+
+  <!-- Leaf Particles -->
+  <div class="leaf-container" id="leafContainer"></div>
+
+  <!-- Grain overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Vignette -->
+  <div class="vignette"></div>
+
+  <!-- Color shift -->
+  <div class="color-shift"></div>
+
+  <!-- Progress Dots -->
+  <div class="slide-counter" id="slideCounter"></div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const SLIDE_DURATIONS = [
+    3000,  // 0: Hook
+    3000,  // 1: Course info
+    2500,  // 2: 先付
+    2500,  // 3: 椀物
+    2500,  // 4: 造里
+    2500,  // 5: 焼物
+    2500,  // 6: 揚物
+    2800,  // 7: 温物
+    2500,  // 8: 甘味
+    3000,  // 9: Reservation
+    4200   // 10: CTA
+  ];
+
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+  let timer = null;
+
+  // Progress Dots
+  const counter = document.getElementById('slideCounter');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'counter-dot' + (i === 0 ? ' active' : '');
+    dot.dataset.index = i;
+    counter.appendChild(dot);
+  }
+
+  function updateDots(index) {
+    document.querySelectorAll('.counter-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  // Top Bar
+  const topBar = document.getElementById('topBar');
+  function updateTopBar(index) {
+    topBar.style.transition = 'opacity 0.5s ease';
+    topBar.style.opacity = (index === 0 || index === totalSlides - 1) ? '0' : '1';
+  }
+
+  // Slide Transition
+  function goToSlide(index) {
+    const prev = currentIndex;
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('exiting');
+    setTimeout(() => { slides[prev].classList.remove('exiting'); }, 600);
+
+    currentIndex = index;
+    slides[currentIndex].classList.add('active');
+    updateDots(currentIndex);
+    updateTopBar(currentIndex);
+    scheduleNext();
+  }
+
+  function nextSlide() {
+    goToSlide((currentIndex + 1) % totalSlides);
+  }
+
+  function scheduleNext() {
+    if (timer) clearTimeout(timer);
+    var jitter = Math.floor(Math.random() * 160) - 80;
+    timer = setTimeout(nextSlide, SLIDE_DURATIONS[currentIndex] + jitter);
+  }
+
+  // Bamboo Leaf Particles
+  const leafContainer = document.getElementById('leafContainer');
+  function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf';
+    const x = Math.random() * 1080;
+    const w = 14 + Math.random() * 14;
+    const h = w * 0.4;
+    const dur = 7 + Math.random() * 7;
+    const delay = Math.random() * 2;
+
+    leaf.style.left = x + 'px';
+    leaf.style.top = '-30px';
+    leaf.style.width = w + 'px';
+    leaf.style.height = h + 'px';
+
+    leafContainer.appendChild(leaf);
+
+    setTimeout(() => {
+      leaf.classList.add('fall');
+      leaf.style.animationDuration = dur + 's';
+    }, delay * 1000);
+
+    setTimeout(() => { leaf.remove(); }, (dur + delay) * 1000 + 500);
+  }
+
+  function leafLoop() {
+    const count = 1 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < count; i++) createLeaf();
+    setTimeout(leafLoop, 2000 + Math.random() * 600);
+  }
+
+  // Preload
+  function preloadImages() {
+    const imgs = document.querySelectorAll('.slide-bg');
+    const promises = [];
+    imgs.forEach(bg => {
+      const style = bg.getAttribute('style') || '';
+      const match = style.match(/url\(['"]?([^'")\s]+)['"]?\)/);
+      if (match) {
+        promises.push(new Promise(resolve => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = match[1];
+        }));
+      }
+    });
+    return Promise.all(promises);
+  }
+
+  // Start
+  window.startReel = function() {
+    slides[0].classList.add('active');
+    updateTopBar(0);
+    updateDots(0);
+    scheduleNext();
+    leafLoop();
+
+    const total = SLIDE_DURATIONS.reduce((a, b) => a + b, 0);
+    setTimeout(() => { window.__REEL_DONE__ = true; }, total + 1000);
+  };
+
+  window.__REEL_READY__ = false;
+  preloadImages().then(() => {
+    window.__REEL_READY__ = true;
+    setTimeout(() => {
+      if (!slides[0].classList.contains('active')) window.startReel();
+    }, 100);
+  });
+
+  updateTopBar(0);
+})();
+</script>
+
+</body>
+</html>
