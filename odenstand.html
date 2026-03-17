@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1">
+<title>おでん×スタンド三徳六味 ESTフードホール Instagram Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #1a1008;
+    font-family: 'Zen Maru Gothic', 'M PLUS Rounded 1c', 'Hiragino Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .reel {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+  }
+
+  /* ===== Slides ===== */
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .slide.exiting {
+    z-index: 5;
+  }
+
+  /* ===== AI対策: 非均一トランジション ===== */
+  .slide[data-index="0"] { transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1); }
+  .slide[data-index="1"] { transition: opacity 0.9s cubic-bezier(0.33, 0, 0.67, 1); }
+  .slide[data-index="2"] { transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .slide[data-index="3"] { transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .slide[data-index="4"] { transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .slide[data-index="5"] { transition: opacity 0.65s cubic-bezier(0.39, 0.575, 0.565, 1); }
+  .slide[data-index="6"] { transition: opacity 0.8s cubic-bezier(0.47, 0, 0.745, 0.715); }
+  .slide[data-index="7"] { transition: opacity 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53); }
+  .slide[data-index="8"] { transition: opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1); }
+  .slide[data-index="9"] { transition: opacity 0.75s cubic-bezier(0.33, 0, 0.67, 1); }
+  .slide[data-index="10"] { transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1); }
+
+  /* ===== Background Image ===== */
+  .slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #1a1008;
+    transform: scale(1);
+  }
+
+  /* ===== AI対策: 各スライド個別のKen Burns方向 ===== */
+  .slide[data-index="0"].active .slide-bg { animation: kb-zoom-in 3.2s ease-out forwards; }
+  .slide[data-index="1"].active .slide-bg { animation: kb-pan-right 3.5s ease-out forwards; }
+  .slide[data-index="2"].active .slide-bg { animation: kb-zoom-out 2.8s ease-out forwards; }
+  .slide[data-index="3"].active .slide-bg { animation: kb-pan-left 3.0s ease-out forwards; }
+  .slide[data-index="4"].active .slide-bg { animation: kb-pan-up 2.6s ease-out forwards; }
+  .slide[data-index="5"].active .slide-bg { animation: kb-zoom-in 3.3s ease-out forwards; }
+  .slide[data-index="6"].active .slide-bg { animation: kb-pan-down 2.9s ease-out forwards; }
+  .slide[data-index="7"].active .slide-bg { animation: kb-zoom-out 2.7s ease-out forwards; }
+  .slide[data-index="8"].active .slide-bg { animation: kb-pan-right 3.1s ease-out forwards; }
+  .slide[data-index="9"].active .slide-bg { animation: kb-pan-left 2.5s ease-out forwards; }
+  .slide[data-index="10"].active .slide-bg { animation: kb-zoom-in 3.4s ease-out forwards; }
+
+  @keyframes kb-zoom-in   { 0% { transform: scale(1.12); } 100% { transform: scale(1); } }
+  @keyframes kb-zoom-out  { 0% { transform: scale(1); }    100% { transform: scale(1.08); } }
+  @keyframes kb-pan-right { 0% { transform: scale(1.1) translateX(-15px); } 100% { transform: scale(1.05) translateX(15px); } }
+  @keyframes kb-pan-left  { 0% { transform: scale(1.1) translateX(15px); }  100% { transform: scale(1.05) translateX(-15px); } }
+  @keyframes kb-pan-up    { 0% { transform: scale(1.1) translateY(15px); }  100% { transform: scale(1.05) translateY(-10px); } }
+  @keyframes kb-pan-down  { 0% { transform: scale(1.1) translateY(-15px); } 100% { transform: scale(1.05) translateY(10px); } }
+
+  /* ===== Overlays ===== */
+  .slide-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(26,16,8,0.4) 0%,
+      rgba(26,16,8,0.05) 30%,
+      rgba(26,16,8,0.05) 50%,
+      rgba(26,16,8,0.5) 75%,
+      rgba(26,16,8,0.85) 100%
+    );
+  }
+
+  /* ===== AI対策: フィルムグレイン風ノイズ ===== */
+  .grain-overlay {
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grainShift 0.8s steps(4) infinite;
+  }
+
+  @keyframes grainShift {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-5%, -3%); }
+    50%  { transform: translate(3%, 5%); }
+    75%  { transform: translate(-3%, 2%); }
+    100% { transform: translate(5%, -5%); }
+  }
+
+  /* ===== AI対策: 微妙なビネット ===== */
+  .vignette {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 55;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.3) 100%);
+  }
+
+  /* ===== Top Bar ===== */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 55px 50px 25px;
+    z-index: 100;
+    background: linear-gradient(180deg, rgba(26,16,8,0.75) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .restaurant-name {
+    font-size: 28px;
+    font-weight: 500;
+    color: #f5c96a;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+
+  .restaurant-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(245,201,106,0.6);
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* ===== Bottom Content ===== */
+  .slide-content {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    padding: 0 60px 130px;
+    z-index: 20;
+  }
+
+  /* ===== Text Animations (AI対策: 各delayに微妙な揺らぎ) ===== */
+  .text-reveal {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  .slide.active .text-reveal { animation: textUp 0.65s ease-out forwards; }
+  .slide.active .text-reveal.d1 { animation-delay: 0.18s; }
+  .slide.active .text-reveal.d2 { animation-delay: 0.37s; }
+  .slide.active .text-reveal.d3 { animation-delay: 0.58s; }
+  .slide.active .text-reveal.d4 { animation-delay: 0.73s; }
+  .slide.active .text-reveal.d5 { animation-delay: 0.92s; }
+
+  @keyframes textUp {
+    0%   { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Category / Dish Styles ===== */
+  .category-tag {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1008;
+    background: #f5c96a;
+    padding: 6px 22px;
+    border-radius: 20px;
+    letter-spacing: 4px;
+  }
+
+  .dish-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    margin-top: 16px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .dish-desc {
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    letter-spacing: 1px;
+    margin-top: 10px;
+  }
+
+  .deco-line {
+    width: 50px;
+    height: 3px;
+    background: #f5c96a;
+    margin: 16px 0;
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .slide.active .deco-line {
+    animation: lineGrow 0.5s ease-out forwards;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes lineGrow {
+    0%   { opacity: 0; transform: scaleX(0); }
+    100% { opacity: 1; transform: scaleX(1); }
+  }
+
+  /* ===== HOOK Slide ===== */
+  .hook-content {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    width: 85%;
+  }
+
+  .hook-catch {
+    font-size: 30px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+  }
+
+  .hook-main {
+    font-size: 68px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: 4px;
+    text-shadow: 0 3px 20px rgba(0,0,0,0.7);
+  }
+
+  .hook-main .accent {
+    color: #f5c96a;
+  }
+
+  .hook-location {
+    font-size: 26px;
+    font-weight: 400;
+    color: #f5c96a;
+    letter-spacing: 6px;
+    margin-top: 25px;
+  }
+
+  /* ===== Store Info Slide ===== */
+  .store-info {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    padding: 0 60px 130px;
+    z-index: 20;
+  }
+
+  .store-name-large {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 46px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 4px;
+    line-height: 1.4;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+
+  .store-tagline {
+    font-size: 24px;
+    font-weight: 300;
+    color: #f5c96a;
+    letter-spacing: 6px;
+    margin-top: 12px;
+  }
+
+  /* ===== CTA Slide ===== */
+  .cta-slide .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(26,16,8,0.5) 0%,
+      rgba(26,16,8,0.7) 35%,
+      rgba(26,16,8,0.92) 100%
+    );
+  }
+
+  .cta-content {
+    position: absolute;
+    top: 42%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 60px;
+    z-index: 20;
+    text-align: center;
+  }
+
+  .cta-heading {
+    font-size: 44px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+
+  .cta-sub {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(245,201,106,0.8);
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    border: 3px solid #f5c96a;
+    color: #f5c96a;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    padding: 18px 55px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+  }
+
+  .slide.active .cta-button {
+    animation: btnGlow 1.8s ease-in-out infinite;
+    animation-delay: 0.8s;
+  }
+
+  @keyframes btnGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,201,106,0.4); }
+    50%      { box-shadow: 0 0 25px 8px rgba(245,201,106,0.15); }
+  }
+
+  .cta-phone {
+    font-size: 38px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+  }
+
+  .cta-phone-icon {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #f5c96a;
+    border-radius: 50%;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .cta-phone-icon::after {
+    content: '\260E';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 17px;
+    color: #f5c96a;
+  }
+
+  .cta-divider {
+    width: 80px;
+    height: 2px;
+    background: rgba(245,201,106,0.4);
+    margin: 0 auto 30px;
+    border-radius: 1px;
+  }
+
+  .cta-store-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #f5c96a;
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+  }
+
+  .cta-address {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    letter-spacing: 2px;
+  }
+
+  .cta-hours {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    margin-top: 18px;
+  }
+
+  /* ===== Progress Dots ===== */
+  .slide-counter {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+  }
+
+  .counter-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.4s ease;
+  }
+
+  .counter-dot.active {
+    background: #f5c96a;
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  /* ===== Steam Effect (AI対策: 有機的エフェクト) ===== */
+  .steam-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .steam-particle {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+
+  .steam-particle.rise {
+    animation: steamRise linear forwards;
+  }
+
+  @keyframes steamRise {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+    15%  { opacity: 0.4; }
+    60%  { opacity: 0.2; }
+    100% { opacity: 0; transform: translateY(-600px) scale(2.5) translateX(80px); }
+  }
+
+  /* ===== AI対策: 微妙なカラーシフト ===== */
+  .color-shift {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 58;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.04;
+    animation: colorPulse 12s ease-in-out infinite;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7c948 50%, #4ecdc4 100%);
+  }
+
+  @keyframes colorPulse {
+    0%, 100% { opacity: 0.03; }
+    33%      { opacity: 0.05; }
+    66%      { opacity: 0.02; }
+  }
+</style>
+</head>
+<body>
+
+<div class="reel" id="reel">
+
+  <!-- ========== SLIDE 0: HOOK - 湯気立つおでん ========== -->
+  <div class="slide" data-index="0">
+    <div class="slide-bg" style="background-image: url('images-odenstand/01-hook-steam.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="hook-content">
+      <div class="hook-catch text-reveal">── EST FOODHALL ──</div>
+      <div class="hook-main text-reveal d1">
+        出汁が<span class="accent">沁みる</span><br>本格おでん
+      </div>
+      <div class="hook-location text-reveal d2">梅田ESTフードホール</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 1: おでん鍋全景 ========== -->
+  <div class="slide" data-index="1">
+    <div class="slide-bg" style="background-image: url('images-odenstand/02-nabe-overview.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">名 物</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        キャラクターはんぺん<br>×白濁出汁おでん
+      </div>
+      <div class="dish-desc text-reveal d3">全8種の仕切り鍋で目でも楽しめる</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 2: 外観 ========== -->
+  <div class="slide" data-index="2">
+    <div class="slide-bg" style="background-image: url('images-odenstand/03-exterior.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="store-info">
+      <div class="store-name-large text-reveal">
+        おでん×スタンド<br>三徳六味
+      </div>
+      <div class="store-tagline text-reveal d2">EST FOODHALL</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 3: おでんクローズアップ ========== -->
+  <div class="slide" data-index="3">
+    <div class="slide-bg" style="background-image: url('images-odenstand/04-oden-closeup.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">こだわりの出汁</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        白濁鶏出汁おでん
+      </div>
+      <div class="dish-desc text-reveal d3">じっくり炊き上げた濃厚な白濁スープ</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 4: おでん盛り合わせ ========== -->
+  <div class="slide" data-index="4">
+    <div class="slide-bg" style="background-image: url('images-odenstand/05-oden-plate.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">おでん盛り</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        日本酒と愉しむ<br>おでん盛り合わせ
+      </div>
+      <div class="dish-desc text-reveal d3">厳選した日本酒との相性抜群</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 5: 料理俯瞰 ========== -->
+  <div class="slide" data-index="5">
+    <div class="slide-bg" style="background-image: url('images-odenstand/06-menu-overview.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">一品料理も充実</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        お刺身・だし巻き<br>煮込み・おでん
+      </div>
+      <div class="dish-desc text-reveal d3">おでん以外の逸品も多数ご用意</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 6: 煮込み ========== -->
+  <div class="slide" data-index="6">
+    <div class="slide-bg" style="background-image: url('images-odenstand/07-nikomi.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">名物一品</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        とろとろ牛すじ煮込み
+      </div>
+      <div class="dish-desc text-reveal d3">お酒のお供にぴったり</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 7: ドリンク ========== -->
+  <div class="slide" data-index="7">
+    <div class="slide-bg" style="background-image: url('images-odenstand/08-drinks.jpg');"></div>
+    <div class="slide-overlay" style="background: linear-gradient(180deg, rgba(26,16,8,0.3) 0%, rgba(26,16,8,0.05) 40%, rgba(26,16,8,0.6) 80%, rgba(26,16,8,0.9) 100%);"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">ドリンク</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        36フルーツサワー
+      </div>
+      <div class="dish-desc text-reveal d3">旬のフルーツたっぷりの映えサワー</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 8: 乾杯 ========== -->
+  <div class="slide" data-index="8">
+    <div class="slide-bg" style="background-image: url('images-odenstand/09-kanpai.jpg');"></div>
+    <div class="slide-overlay" style="background: linear-gradient(180deg, rgba(26,16,8,0.3) 0%, rgba(26,16,8,0.05) 40%, rgba(26,16,8,0.6) 80%, rgba(26,16,8,0.9) 100%);"></div>
+    <div class="slide-content">
+      <div class="dish-title text-reveal" style="font-size: 52px; text-align: center;">
+        まいど！<span style="color: #f5c96a;">乾杯</span>
+      </div>
+      <div class="dish-desc text-reveal d2" style="text-align: center;">仕事帰りの一杯にも、友人との語らいにも</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 9: 内観 ========== -->
+  <div class="slide" data-index="9">
+    <div class="slide-bg" style="background-image: url('images-odenstand/10-interior.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="category-tag text-reveal">スタンドスタイル</div>
+      <div class="deco-line"></div>
+      <div class="dish-title text-reveal d2">
+        カウンターで<br>気軽に一杯
+      </div>
+      <div class="dish-desc text-reveal d3">おひとり様でもグループでも</div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 10: CTA ========== -->
+  <div class="slide cta-slide" data-index="10">
+    <div class="slide-bg" style="background-image: url('images-odenstand/11-live-action.jpg'); filter: blur(6px) brightness(0.4);"></div>
+    <div class="slide-overlay"></div>
+    <div class="cta-content">
+      <div class="cta-heading text-reveal">お気軽にお越しください</div>
+      <div class="cta-sub text-reveal d1">Walk-in Welcome</div>
+      <div class="cta-button text-reveal d2">ご 来 店</div>
+      <div style="height: 25px;"></div>
+      <div class="cta-phone text-reveal d3">
+        <span class="cta-phone-icon"></span>06-6743-4501
+      </div>
+      <div class="cta-divider text-reveal d3"></div>
+      <div class="cta-store-name text-reveal d4">おでん×スタンド三徳六味</div>
+      <div class="cta-address text-reveal d4">
+        大阪市北区角田町3-25<br>
+        EST FOODHALL
+      </div>
+      <div class="cta-hours text-reveal d5">
+        11:00〜23:00（L.O. フード22:00 / ドリンク22:15）<br>
+        不定休（施設定休日に準ずる）
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Top Bar ========== -->
+  <div class="top-bar" id="topBar">
+    <div class="restaurant-name">三 徳 六 味</div>
+    <div class="restaurant-sub">おでん × スタンド</div>
+  </div>
+
+  <!-- ========== Steam Effect ========== -->
+  <div class="steam-container" id="steamContainer"></div>
+
+  <!-- ========== AI対策: グレインオーバーレイ ========== -->
+  <div class="grain-overlay"></div>
+
+  <!-- ========== AI対策: ビネット ========== -->
+  <div class="vignette"></div>
+
+  <!-- ========== AI対策: カラーシフト ========== -->
+  <div class="color-shift"></div>
+
+  <!-- ========== Progress Dots ========== -->
+  <div class="slide-counter" id="slideCounter"></div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== AI対策: 非均一なスライド表示時間 =====
+  const SLIDE_DURATIONS = [
+    2800,  // Slide 0: Hook
+    2700,  // Slide 1: おでん鍋全景
+    2300,  // Slide 2: 外観
+    2600,  // Slide 3: おでんクローズアップ
+    2400,  // Slide 4: おでん盛り合わせ
+    2500,  // Slide 5: 料理俯瞰
+    2300,  // Slide 6: 煮込み
+    2400,  // Slide 7: ドリンク
+    2200,  // Slide 8: 乾杯
+    2300,  // Slide 9: 内観
+    3800   // Slide 10: CTA
+  ];
+
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+  let timer = null;
+
+  // Build Progress Dots
+  const counter = document.getElementById('slideCounter');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'counter-dot' + (i === 0 ? ' active' : '');
+    dot.dataset.index = i;
+    counter.appendChild(dot);
+  }
+
+  function updateDots(index) {
+    document.querySelectorAll('.counter-dot').forEach(function(dot, i) {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  // Top Bar Visibility
+  var topBar = document.getElementById('topBar');
+
+  function updateTopBar(index) {
+    if (index === 0 || index === 2 || index === totalSlides - 1) {
+      topBar.style.opacity = '0';
+    } else {
+      topBar.style.opacity = '1';
+    }
+  }
+
+  // Slide Transition
+  function goToSlide(index) {
+    var prevIndex = currentIndex;
+    slides[prevIndex].classList.remove('active');
+    slides[prevIndex].classList.add('exiting');
+
+    setTimeout(function() {
+      slides[prevIndex].classList.remove('exiting');
+    }, 900);
+
+    currentIndex = index;
+    slides[currentIndex].classList.add('active');
+    updateDots(currentIndex);
+    updateTopBar(currentIndex);
+    scheduleNext();
+  }
+
+  function nextSlide() {
+    var next = (currentIndex + 1) % totalSlides;
+    goToSlide(next);
+  }
+
+  function scheduleNext() {
+    if (timer) clearTimeout(timer);
+    // AI対策: 各スライドに±100msのランダム揺らぎ
+    var jitter = Math.floor(Math.random() * 200) - 100;
+    timer = setTimeout(nextSlide, SLIDE_DURATIONS[currentIndex] + jitter);
+  }
+
+  // ===== Steam Effect =====
+  var steamContainer = document.getElementById('steamContainer');
+
+  function createSteamParticle() {
+    var particle = document.createElement('div');
+    particle.className = 'steam-particle';
+
+    var x = 200 + Math.random() * 680;
+    var size = 80 + Math.random() * 100;
+    var duration = 4 + Math.random() * 5;
+    var delay = Math.random() * 1.5;
+
+    particle.style.left = x + 'px';
+    particle.style.bottom = '300px';
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+
+    steamContainer.appendChild(particle);
+
+    setTimeout(function() {
+      particle.classList.add('rise');
+      particle.style.animationDuration = duration + 's';
+    }, delay * 1000);
+
+    setTimeout(function() {
+      particle.remove();
+    }, (duration + delay) * 1000 + 500);
+  }
+
+  function steamLoop() {
+    var count = 1 + Math.floor(Math.random() * 2);
+    for (var i = 0; i < count; i++) {
+      createSteamParticle();
+    }
+    // AI対策: 不規則な間隔
+    setTimeout(steamLoop, 1200 + Math.random() * 800);
+  }
+
+  // ===== Preload Images =====
+  function preloadImages() {
+    var imgs = document.querySelectorAll('.slide-bg');
+    var promises = [];
+    imgs.forEach(function(bg) {
+      var style = bg.getAttribute('style') || '';
+      var match = style.match(/url\(['"]?([^'")\s]+)['"]?\)/);
+      if (match) {
+        promises.push(new Promise(function(resolve) {
+          var img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = match[1];
+        }));
+      }
+    });
+    return Promise.all(promises);
+  }
+
+  // ===== Initialize =====
+  window.startReel = function() {
+    slides[0].classList.add('active');
+    updateTopBar(0);
+    updateDots(0);
+    scheduleNext();
+    steamLoop();
+
+    var totalDuration = SLIDE_DURATIONS.reduce(function(a, b) { return a + b; }, 0);
+    setTimeout(function() {
+      window.__REEL_DONE__ = true;
+    }, totalDuration + 1000);
+  };
+
+  window.__REEL_READY__ = false;
+  preloadImages().then(function() {
+    window.__REEL_READY__ = true;
+    setTimeout(function() {
+      if (!slides[0].classList.contains('active')) {
+        window.startReel();
+      }
+    }, 100);
+  });
+
+  updateTopBar(0);
+
+})();
+</script>
+
+</body>
+</html>
