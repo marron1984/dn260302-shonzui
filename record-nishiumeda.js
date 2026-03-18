@@ -6,14 +6,14 @@ const { execSync } = require('child_process');
 const HTML_PATH = path.resolve(__dirname, 'nishiumeda.html');
 const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const WEBM_PATH = path.join(OUTPUT_DIR, 'nishiumeda-raw.webm');
-const MP4_PATH = path.join(OUTPUT_DIR, 'nishiumeda-course-reel.mp4');
+const MP4_PATH = path.join(OUTPUT_DIR, 'utsubushiiro-course-reel.mp4');
 
-// 11 slides: 3000+3000+2500+2500+2500+2500+2500+2800+2500+3000+4200 = 31000ms
-const TOTAL_DURATION = 31000;
+// 12 slides: 3000+3000+2500+2500+2500+2500+2500+2500+3000+2500+3000+4200 = 33700ms
+const TOTAL_DURATION = 33700;
 const BUFFER = 2000;
 
 (async () => {
-  console.log('Starting 西梅田禅園 花緑青コース Reel recording...');
+  console.log('Starting 西梅田禅園 空五倍子色コース Reel recording...');
 
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
