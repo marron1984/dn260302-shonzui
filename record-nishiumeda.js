@@ -8,8 +8,8 @@ const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const WEBM_PATH = path.join(OUTPUT_DIR, 'nishiumeda-raw.webm');
 const MP4_PATH = path.join(OUTPUT_DIR, 'utsubushiiro-course-reel.mp4');
 
-// 12 slides: 3000+3000+2500+2500+2500+2500+2500+2500+3000+2500+3000+4200 = 33700ms
-const TOTAL_DURATION = 33700;
+// 11 slides: 3000+3000+2500+2500+2500+2500+2500+2500+2500+3000+4200 = 31200ms
+const TOTAL_DURATION = 31200;
 const BUFFER = 2000;
 
 (async () => {
